@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.dualser.modulo6.utils.Constants
+import com.dualser.modulo6.utils.PlatformEnum
 
 @Entity(tableName = Constants.DATABASE_MOVIES_TABLE)
 data class MovieEntity(
@@ -21,8 +22,8 @@ data class MovieEntity(
     var platform: String,
 
     @ColumnInfo(name = "platform_image")
-    var platformImage: String,
+    var platformImage: PlatformEnum,
 
-    @ColumnInfo(name = "description")
-    var description: String,
+    @ColumnInfo(name = "rating")
+    var rating: Float
 )

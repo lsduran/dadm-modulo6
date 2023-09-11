@@ -9,7 +9,7 @@ import com.dualser.modulo6.utils.Constants
 
 @Database(
     entities = [MovieEntity::class],
-    version = 1,
+    version = 3,
     exportSchema = true
 )
 abstract class MovieDatabase: RoomDatabase() {

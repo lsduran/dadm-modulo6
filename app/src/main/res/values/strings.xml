@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">modulo6</string>
+    <string name="no_data">No se encontraron películas</string>
+    <string name="add_movie">Agregar película</string>
+    <string name="title">Titulo</string>
+    <string name="genre">Género</string>
+    <string name="platform">Plataforma</string>
+    <string name="platform_image">Logo plataforma</string>
+    <string name="header_image">Imagen header</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Borrar</string>
+    <string name="update">Actualizar</string>
+    <string name="alertTitle">Película</string>
+    <string name="movie_created">La película %1$s ha sido guardada</string>
+    <string name="movie_updated">La película %1$s ha sido actualizada</string>
+    <string name="movie_deleted">La película %1$s ha sido eliminada</string>
+    <string name="movie_not_created">ERROR: la película %1$s no se pudo guardar</string>
+    <string name="movie_not_updated">ERROR: la película %1$s no se pudo actualizar</string>
+    <string name="movie_not_deleted">ERROR: la película %1$s no se pudo eliminar</string>
+    <string name="action_cancelled">Acción cancelada</string>
+    <string name="delete_confirmation">¿Desea eliminar la película %1$s?</string>
+    <string name="accept">Aceptar</string>
+
+    <string-array name="platforms">
+        <item>Netflix</item>
+        <item>AppleTV</item>
+        <item>Disney+</item>
+        <item>HBO Max</item>
+        <item>Paramount</item>
+        <item>Prime Video</item>
+        <item>Star+</item>
+    </string-array>
+
+    <string name="netflix">Netflix</string>
+    <string name="apple">AppleTV</string>
+    <string name="disney">Disney+</string>
+    <string name="hbo">HBO Max</string>
+    <string name="paramount">Paramount</string>
+    <string name="prime">Prime Video</string>
+    <string name="star">Star+</string>
+
+    <string name="rating">Calificación</string>
+    <string name="pick_platform">Seleccione…</string>
+    <string name="title_error">El campo Título no puede estar vacío</string>
+    <string name="genre_error">El campo Género no puede estar vacío</string>
+    <string name="platform_error">Debe seleccionar una plataforma</string>
 </resources>

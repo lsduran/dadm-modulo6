@@ -3,7 +3,13 @@
     <style name="Base.Theme.Modulo6" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#0109A6</item>
     </style>
 
     <style name="Theme.Modulo6" parent="Base.Theme.Modulo6" />
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/activated_stars</item>
+    </style>
 </resources>
