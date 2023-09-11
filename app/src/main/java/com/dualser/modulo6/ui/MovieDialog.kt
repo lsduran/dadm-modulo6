@@ -192,6 +192,9 @@ class MovieDialog(
 
             override fun afterTextChanged(p0: Editable?) {
                 // saveButton?.isEnabled = validateFields()
+                if(binding.tietTitle.text.toString().isNotEmpty()) {
+                    binding.tilTitle.error = ""
+                }
             }
 
         })
@@ -207,6 +210,9 @@ class MovieDialog(
 
             override fun afterTextChanged(p0: Editable?) {
                 // saveButton?.isEnabled = validateFields()
+                if(binding.tietGenre.text.toString().isNotEmpty()) {
+                    binding.tilGenre.error = ""
+                }
             }
 
         })
@@ -222,6 +228,9 @@ class MovieDialog(
 
             override fun afterTextChanged(p0: Editable?) {
                 // saveButton?.isEnabled = validateFields()
+                if(binding.actvPlatform.text.toString().isNotEmpty()) {
+                    binding.tilPlatform.error = ""
+                }
                 val platform = when (p0.toString()) {
                     getString(R.string.netflix) -> PlatformEnum.NETFLIX
                     getString(R.string.apple) -> PlatformEnum.APPLE
