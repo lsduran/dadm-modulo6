@@ -63,7 +63,6 @@ class MoviesListFragment : Fragment() {
                     response: Response<List<MovieDto>>
                 ) {
                     binding.lavloading.visibility = View.GONE
-                    Log.d(Constants.LOGTAG, "Respuesta: ${response.body()}")
                     response.body()?.let { movies ->
                         binding.rvGames.apply {
                             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -81,8 +80,8 @@ class MoviesListFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<MovieDto>>, t: Throwable) {
-                    Log.e(Constants.LOGTAG, "Error: ${t.message}")
-                    Toast.makeText(requireActivity(), "No hay conexión", Toast.LENGTH_SHORT).show()
+                    Log.e(Constants.LOGTAG, getString(R.string.error, t.message))
+                    Toast.makeText(requireActivity(), getString(R.string.no_network), Toast.LENGTH_SHORT).show()
                     binding.lavloading.visibility = View.GONE
                 }
 

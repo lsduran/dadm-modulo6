@@ -13,4 +13,6 @@
     <string name="starring_by">Protagonizada por: %1$s</string>
     <string name="platforms">Plataformas</string>
     <string name="platforms_streaming">Plataformas: %1$s</string>
+    <string name="no_network">No hay conexión</string>
+    <string name="error">ERROR: %1$s</string>
 </resources>
