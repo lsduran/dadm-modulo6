@@ -1,6 +1,7 @@
 package com.dualser.modulo6.utils
 
 object Constants {
-    const val DATABASE_NAME: String = "movies_db"
-    const val DATABASE_MOVIES_TABLE: String = "movie_data_table"
+    const val BASE_URL: String = "https://private-8ab66e-gyb3.apiary-mock.com/"
+    const val LOGTAG = "LOGS"
+    const val MOVIES_ENDPOINT = "v1/movies"
 }

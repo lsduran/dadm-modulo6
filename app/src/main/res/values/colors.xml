@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="danger">#971212</color>
+    <color name="ok">#198A00</color>
+    <color name="warning">#977100</color>
+    <color name="accepted">#03A9F4</color>
+    <color name="blue">#0109A6</color>
+    <color name="blue_navy">#1E2746</color>
+    <color name="gray">#9F9F9F</color>
+    <color name="activated_stars">#F1D800</color>
 </resources>
