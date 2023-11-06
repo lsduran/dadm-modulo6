@@ -82,6 +82,7 @@ class MovieDetailFragment : Fragment() {
                         override fun onFailure(call: Call<MovieDetailDto>, t: Throwable) {
                             binding.lavloading.visibility = View.GONE
                             Toast.makeText(requireActivity(), getString(R.string.no_network), Toast.LENGTH_SHORT).show()
+                            requireActivity().supportFragmentManager.popBackStack()
                         }
 
                     })
