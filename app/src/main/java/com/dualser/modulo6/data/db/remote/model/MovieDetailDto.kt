@@ -14,6 +14,8 @@ data class MovieDetailDto(
     var rating: Float = 0f,
     @SerializedName("cover_url")
     var coverUrl: String? = null,
+    @SerializedName("trailer_url")
+    var trailerUrl: String? = null,
     @SerializedName("director")
     var director: String? = null,
     @SerializedName("description")

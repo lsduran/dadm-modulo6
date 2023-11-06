@@ -13,6 +13,9 @@
     <string name="starring_by">Protagonizada por: %1$s</string>
     <string name="platforms">Plataformas</string>
     <string name="platforms_streaming">Plataformas: %1$s</string>
-    <string name="no_network">No hay conexión</string>
+    <string name="no_network">No hay conexión a internet</string>
     <string name="error">ERROR: %1$s</string>
+    <string name="watch">Ver tráiler</string>
+    <string name="retry">Reintentar</string>
+    <string name="no_video_played">No se puede reproducir el video en estos momentos</string>
 </resources>

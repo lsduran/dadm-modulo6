@@ -1,5 +1,6 @@
 package com.dualser.modulo6.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,7 +15,9 @@ import com.dualser.modulo6.application.MoviesApp
 import com.dualser.modulo6.data.MovieRepository
 import com.dualser.modulo6.data.db.remote.model.MovieDetailDto
 import com.dualser.modulo6.databinding.FragmentMovieDetailBinding
+import com.dualser.modulo6.ui.activities.TrailerActivity
 import com.dualser.modulo6.utils.Constants
+import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +37,8 @@ class MovieDetailFragment : Fragment() {
     private lateinit var repository: MovieRepository
 
     private val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("es", "MX"))
+
+    private var movie: MovieDetailDto? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,27 +60,28 @@ class MovieDetailFragment : Fragment() {
                             call: Call<MovieDetailDto>,
                             response: Response<MovieDetailDto>
                         ) {
+                            movie = response.body()
                             binding.apply {
                                 lavloading.visibility = View.GONE
-                                tvTitle.text = response.body()?.title
-                                rbRating.rating = response.body()?.rating!! / 2
-                                tvGenre.text = response.body()?.genre
-                                tvDistributor.text = response.body()?.distributedBy
-                                tvReleased.text = getString(R.string.released_date_full, simpleDateFormat.format(response.body()?.releaseDate!!))
-                                tvStarring.text = getString(R.string.starring_by, response.body()?.starring?.joinToString(", "))
-                                tvDirector.text = getString(R.string.directed_by, response.body()?.director)
-                                tvPlatform.text = getString(R.string.platforms_streaming, response.body()?.platforms?.joinToString(", "))
-                                tvDescription.text = response.body()?.description
+                                tvTitle.text = movie?.title
+                                rbRating.rating = movie?.rating!! / 2
+                                tvGenre.text = movie?.genre
+                                tvDistributor.text = movie?.distributedBy
+                                tvReleased.text = getString(R.string.released_date_full, simpleDateFormat.format(movie?.releaseDate!!))
+                                tvStarring.text = getString(R.string.starring_by, movie?.starring?.joinToString(", "))
+                                tvDirector.text = getString(R.string.directed_by, movie?.director)
+                                tvPlatform.text = getString(R.string.platforms_streaming, movie?.platforms?.joinToString(", "))
+                                tvDescription.text = movie?.description
 
                                 Glide.with(requireContext())
-                                    .load(response.body()?.coverUrl)
+                                    .load(movie?.coverUrl)
                                     .into(ivImage)
                             }
                         }
 
                         override fun onFailure(call: Call<MovieDetailDto>, t: Throwable) {
                             binding.lavloading.visibility = View.GONE
-                            Toast.makeText(requireActivity(), "No hay conexión", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireActivity(), getString(R.string.no_network), Toast.LENGTH_SHORT).show()
                         }
 
                     })
@@ -91,6 +97,16 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.rlWatchTrailer?.setOnClickListener {
+            val intent = Intent(requireContext(), TrailerActivity::class.java)
+            intent.putExtra(Constants.EXTRA_TRAILER, movie?.trailerUrl)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

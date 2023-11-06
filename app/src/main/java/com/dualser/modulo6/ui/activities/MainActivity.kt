@@ -1,5 +1,6 @@
-package com.dualser.modulo6.ui
+package com.dualser.modulo6.ui.activities
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View

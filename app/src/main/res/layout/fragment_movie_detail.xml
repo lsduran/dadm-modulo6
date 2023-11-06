@@ -39,13 +39,46 @@
                 android:textSize="50sp"
                 android:text="@string/title" />
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/ivImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                app:riv_corner_radius="10dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:riv_corner_radius="10dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rlWatchTrailer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#88000000">
+
+                    <ImageView
+                        android:id="@+id/ivPlay"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_margin="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_play" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivPlay"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/watch"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
             <RatingBar
                 android:id="@+id/rbRating"

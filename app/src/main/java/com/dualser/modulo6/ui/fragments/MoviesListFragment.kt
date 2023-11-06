@@ -1,5 +1,6 @@
 package com.dualser.modulo6.ui.fragments
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.dualser.modulo6.data.db.remote.model.MovieDto
 import com.dualser.modulo6.databinding.FragmentMoviesListBinding
 import com.dualser.modulo6.ui.adapters.MoviesAdapter
 import com.dualser.modulo6.utils.Constants
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,8 +31,11 @@ class MoviesListFragment : Fragment() {
 
     private lateinit var repository: MovieRepository
 
+    private lateinit var mediaPlayer: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.zelda_secret_sound)
         arguments?.let {
         }
     }
@@ -47,6 +52,7 @@ class MoviesListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        mediaPlayer.release()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,15 +60,27 @@ class MoviesListFragment : Fragment() {
 
         repository = (requireActivity().application as MoviesApp).repository
 
-        lifecycleScope.launch {
-            val call: Call<List<MovieDto>> = repository.getMovies(Constants.MOVIES_ENDPOINT)
+        binding.btnRefresh.setOnClickListener {
+            binding.btnRefresh.visibility = View.GONE
+            downloadData()
+        }
 
+        downloadData()
+
+    }
+
+    private fun downloadData() {
+        lifecycleScope.launch {
+            binding.lavloading.visibility = View.VISIBLE
+            val call: Call<List<MovieDto>> = repository.getMovies(Constants.MOVIES_ENDPOINT)
             call.enqueue(object: Callback<List<MovieDto>> {
                 override fun onResponse(
                     call: Call<List<MovieDto>>,
                     response: Response<List<MovieDto>>
                 ) {
                     binding.lavloading.visibility = View.GONE
+                    binding.btnRefresh.visibility = View.GONE
+                    mediaPlayer?.start()
                     response.body()?.let { movies ->
                         binding.rvGames.apply {
                             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -83,6 +101,7 @@ class MoviesListFragment : Fragment() {
                     Log.e(Constants.LOGTAG, getString(R.string.error, t.message))
                     Toast.makeText(requireActivity(), getString(R.string.no_network), Toast.LENGTH_SHORT).show()
                     binding.lavloading.visibility = View.GONE
+                    binding.btnRefresh.visibility = View.VISIBLE
                 }
 
             })
