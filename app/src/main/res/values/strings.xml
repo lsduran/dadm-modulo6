@@ -54,4 +54,5 @@
     <string name="error_weak_password">La contraseña debe de tener por lo menos 6 caracteres</string>
     <string name="authentication_error">ERROR. No se pudo autenticar exitosamente.</string>
     <string name="logout_succesfully">Se ha cerrado su sesión correctamente</string>
+    <string name="user_profile_updated">User profile updated.</string>
 </resources>

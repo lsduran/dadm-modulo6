@@ -2,6 +2,7 @@ package com.dualser.modulo6.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.userProfileChangeRequest
 
 class SignupFragment : Fragment() {
 
@@ -99,6 +101,17 @@ class SignupFragment : Fragment() {
             if(authResult.isSuccessful){
                 //Enviar correo para verificación de email
                 var firebaseUser = firebaseAuth.currentUser
+
+                val profileUpdates = userProfileChangeRequest {
+                    displayName = name
+                }
+
+                firebaseUser!!.updateProfile(profileUpdates).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Log.d("LOGS", getString(R.string.user_profile_updated))
+                        }
+                    }
+
                 firebaseUser?.sendEmailVerification()?.addOnSuccessListener {
                     Toast.makeText(requireContext(), getString(R.string.verification_email_sent), Toast.LENGTH_SHORT).show()
                 }?.addOnFailureListener {
