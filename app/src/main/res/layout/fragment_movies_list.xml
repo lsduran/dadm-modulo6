@@ -19,6 +19,16 @@
         android:background="@color/blue_navy"
         android:textColor="@color/accepted" />
 
+    <ImageView
+        android:id="@+id/ivLogout"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginVertical="10dp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_logout"
+        app:tint="@color/accepted"
+        android:contentDescription="@string/logout" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -27,5 +27,14 @@ data class MovieDetailDto(
     @SerializedName("distributed_by")
     var distributedBy: String? = null,
     @SerializedName("release_date")
-    var releaseDate: Date? = null
+    var releaseDate: Date? = null,
+    @SerializedName("location")
+    var location: Location? = null
+)
+
+data class Location(
+    @SerializedName("latitude")
+    var latitude: Double = 0.0,
+    @SerializedName("longitude")
+    var longitude: Double = 0.0
 )

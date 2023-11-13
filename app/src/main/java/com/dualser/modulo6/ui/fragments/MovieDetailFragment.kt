@@ -17,7 +17,13 @@ import com.dualser.modulo6.data.db.remote.model.MovieDetailDto
 import com.dualser.modulo6.databinding.FragmentMovieDetailBinding
 import com.dualser.modulo6.ui.activities.TrailerActivity
 import com.dualser.modulo6.utils.Constants
-import kotlinx.coroutines.delay
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +32,7 @@ import java.util.Locale
 
 private const val MOVIE_ID = "movie_id"
 
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : Fragment(), OnMapReadyCallback {
 
     private var movieId: String? = null
 
@@ -39,6 +45,9 @@ class MovieDetailFragment : Fragment() {
     private val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("es", "MX"))
 
     private var movie: MovieDetailDto? = null
+
+    // Para Google Maps
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,13 +106,17 @@ class MovieDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
+
+        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.rlWatchTrailer?.setOnClickListener {
+        binding.rlWatchTrailer.setOnClickListener {
             val intent = Intent(requireContext(), TrailerActivity::class.java)
             intent.putExtra(Constants.EXTRA_TRAILER, movie?.trailerUrl)
             startActivity(intent)
@@ -113,6 +126,12 @@ class MovieDetailFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        map.clear()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(!::map.isInitialized) return
     }
 
     companion object {
@@ -123,5 +142,38 @@ class MovieDetailFragment : Fragment() {
                     putString(MOVIE_ID, movieId.toString())
                 }
             }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+        map.uiSettings.apply {
+            isZoomGesturesEnabled = false
+            isScrollGesturesEnabled = false
+        }
+
+        map.setOnMapLoadedCallback {
+            createMarker(movie)
+        }
+    }
+
+    private fun createMarker(movie: MovieDetailDto?) {
+        binding.tvLocationNotFound.visibility = View.VISIBLE
+        val coordinates = movie?.location?.let {location ->
+            LatLng(location.latitude, location.longitude)
+        }
+        if (coordinates != null) {
+            binding.tvLocationNotFound.visibility = View.GONE
+            val marker = MarkerOptions()
+                .position(coordinates)
+                .title(movie?.distributedBy)
+                .snippet(movie?.director)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.movie_marker))
+            map.addMarker(marker)
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(coordinates, 17f),
+                3000,
+                null
+            )
+        }
     }
 }

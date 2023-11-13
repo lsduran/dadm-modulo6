@@ -5,6 +5,9 @@ buildscript {
         glideVersion = '4.13.2'
         lottieVersion = "3.4.0"
     }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.4.0'
+    }
 }
 
 plugins {

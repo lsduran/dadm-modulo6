@@ -1,5 +1,6 @@
 package com.dualser.modulo6.ui.fragments
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +16,10 @@ import com.dualser.modulo6.application.MoviesApp
 import com.dualser.modulo6.data.MovieRepository
 import com.dualser.modulo6.data.db.remote.model.MovieDto
 import com.dualser.modulo6.databinding.FragmentMoviesListBinding
+import com.dualser.modulo6.ui.activities.AuthActivity
 import com.dualser.modulo6.ui.adapters.MoviesAdapter
 import com.dualser.modulo6.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -33,11 +36,12 @@ class MoviesListFragment : Fragment() {
 
     private lateinit var mediaPlayer: MediaPlayer
 
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.zelda_secret_sound)
-        arguments?.let {
-        }
+        firebaseAuth = FirebaseAuth.getInstance()
     }
 
     override fun onCreateView(
@@ -63,6 +67,10 @@ class MoviesListFragment : Fragment() {
         binding.btnRefresh.setOnClickListener {
             binding.btnRefresh.visibility = View.GONE
             downloadData()
+        }
+
+        binding.ivLogout.setOnClickListener {
+            signOut()
         }
 
         downloadData()
@@ -108,4 +116,11 @@ class MoviesListFragment : Fragment() {
         }
     }
 
+    private fun signOut() {
+        firebaseAuth.signOut()
+        Toast.makeText(requireContext(), getString(R.string.logout_succesfully), Toast.LENGTH_SHORT).show()
+        val intent = Intent(requireContext(), AuthActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
 }

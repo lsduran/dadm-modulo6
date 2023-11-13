@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">modulo6</string>
+    <string name="app_name">+Pelis</string>
     <string name="movies">Películas</string>
     <string name="genre">Género</string>
     <string name="released_date">Fecha de estreno</string>
@@ -18,4 +18,40 @@
     <string name="watch">Ver tráiler</string>
     <string name="retry">Reintentar</string>
     <string name="no_video_played">No se puede reproducir el video en estos momentos</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="signup">Registrarse</string>
+    <string name="register">Registro</string>
+    <string name="forgot_password">¿Olvidó su contraseña?</string>
+    <string name="name">Nombre</string>
+    <string name="confirm_password">Confirme contraseña</string>
+    <string name="send">Enviar</string>
+    <string name="location">Ubicación</string>
+    <string name="location_permission">Permiso de ubicación</string>
+    <string name="location_not_found">No se encontró la ubicación</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="email_required">El campo de correo no puede estar vacío</string>
+    <string name="password_required">El campo de contraseña no puede estar vacío</string>
+    <string name="error_invalid_email">ERROR: El correo electrónico no tiene un formato correcto</string>
+    <string name="error_wrong_password">La contraseña no es válida</string>
+    <string name="login_error">ERROR: Hay un problema con los datos ingresados, verifique</string>
+    <string name="name_required">El nombre no puede estar vacío. Ingrese su nombre</string>
+    <string name="password_no_match">Las contraseñas no coinciden, verifique</string>
+    <string name="restart_password">Restablecer contraseña</string>
+    <string name="email_confirmation">Ingrese su correo electrónico y recibirá un enlace para restablecer su contraseña</string>
+    <string name="restart_password_sent">El enlace para restablecer la contraseña ha sido enviado al correo ingresado</string>
+    <string name="reset_password_error">El enlace no se ha podido enviar: %1$s</string>
+    <string name="enter_email">Favor de ingresar su dirección de correo</string>
+    <string name="cancel">Cancelar</string>
+    <string name="verification_email_sent">Se ha enviado un correo de verificación a su dirección</string>
+    <string name="verification_email_error">Hubo un error al enviar el correo de verificación</string>
+    <string name="user_created">Se ha creado su usuario satisfactoriamente</string>
+    <string name="error_account_exists_with_different_credential">ERROR: Una cuenta ya existe con el mismo correo, pero con diferentes datos de ingreso</string>
+    <string name="error_email_already_in_use">Error: el correo electrónico ya está en uso con otra cuenta.</string>
+    <string name="error_user_token_expired">Error: La sesión ha expirado. Favor de ingresar nuevamente.</string>
+    <string name="error_user_not_found">Error: No existe el usuario con la información proporcionada.</string>
+    <string name="error_weak_password">La contraseña debe de tener por lo menos 6 caracteres</string>
+    <string name="authentication_error">ERROR. No se pudo autenticar exitosamente.</string>
+    <string name="logout_succesfully">Se ha cerrado su sesión correctamente</string>
 </resources>

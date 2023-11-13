@@ -91,6 +91,40 @@
                 android:theme="@style/RatingBar"
                 android:layout_gravity="end"/>
 
+            <TextView
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:textAlignment="center"
+                android:fontFamily="@font/sf_movie_poster_oblique"
+                android:text="@string/location"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="500dp" >
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvLocationNotFound"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:background="#66000000"
+                    android:text="@string/location_not_found"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sf_movie_poster"
+                    android:textSize="50sp" />
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
